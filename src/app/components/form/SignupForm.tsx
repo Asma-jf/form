@@ -1,7 +1,8 @@
 "use client";
 import React from "react";
 import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
-import FormTextInput from "@/app/form/text-inout/FormTextInput";
+import FormTextInput from "@/app/components/form/text-inout/FormTextInput";
+import FormProviderWrapper from "./provider/FormProvider";
 interface FormInputs {
   username: string;
   password: string;
@@ -17,7 +18,7 @@ const SignupForm: React.FC = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen">
-      <FormProvider {...inputs}>
+      <FormProviderWrapper onSubmit={onsubmit}>
       <form
         onSubmit={inputs.handleSubmit(onSubmit)}
         className="bg-white p-6 rounded-2xl shadow-lg w-80"
@@ -42,7 +43,7 @@ const SignupForm: React.FC = () => {
           ثبت‌نام
         </button>
       </form>
-      </FormProvider>
+      </FormProviderWrapper>
     </div>
   );
 };
