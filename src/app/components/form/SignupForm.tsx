@@ -1,8 +1,7 @@
 "use client";
 import React from "react";
-import { useForm, SubmitHandler, Controller } from "react-hook-form";
-import { Input } from "@heroui/input";
-
+import { useForm, SubmitHandler } from "react-hook-form";
+import Formcontroller from "@/app/form/text-inout/page";
 interface FormInputs {
   username: string;
   password: string;
@@ -24,35 +23,21 @@ const SignupForm: React.FC = () => {
       >
         <h2 className="text-2xl mb-4 text-center font-bold">فرم ثبت‌نام</h2>
 
-        <Controller
+        <Formcontroller
           name="username"
           control={control}
-          rules={{ required: true }}
-          render={({ field, fieldState: { error } }) => (
-            <Input
-              label="Username"
-              value={field.value || ""}
-              onChange={(e) => field.onChange(e.target.value)}
-              className="w-full mb-3 p-2 border rounded-md"
-            />
-          )}
+          rules={{ required: "نام کاربری الزامی است"}}
+          label="نام و نام خانوادگی"
+          placeholder= "نام و نام خانوادگی"
         />
-
-        <Controller
+    <Formcontroller
           name="password"
           control={control}
-          rules={{ required: true }}
-          render={({ field, fieldState: { error } }) => (
-            <Input
-              type="password"
-              placeholder="Password"
-              value={field.value || ""}
-              onChange={(e) => field.onChange(e.target.value)}
-              className="w-full mb-4 p-2 border rounded-md"
-            />
-          )}
+          rules={{ required: "نام کاربری الزامی است"}}
+          label="پسورد"
+          placeholder= " پسورد خودر را وارد کنید  "
         />
-
+       
         <button
           type="submit"
           className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600"
