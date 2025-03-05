@@ -1,14 +1,17 @@
-// tailwind.config.js
-const {heroui} = require("@heroui/theme");
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'class',
   content: [
-    "./node_modules/@heroui/theme/dist/components/(input|form).js",
+    "./src/**/*.{js,ts,jsx,tsx}"
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        border: 'hsl(var(--border))', // اضافه کردن رنگ سفارشی برای border
+      },
+    },
   },
-  darkMode: "class",
-  plugins: [heroui()],
-};
+  plugins: [
+    require("tailwindcss-animate")
+  ],
+}

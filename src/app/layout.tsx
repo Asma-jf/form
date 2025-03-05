@@ -26,6 +26,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        suppressHydrationWarning={true}  // این خط برای جلوگیری از خطای هیدراسیون
       >
         {children}
       </body>
