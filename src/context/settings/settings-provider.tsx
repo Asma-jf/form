@@ -1,20 +1,24 @@
 import { SettingsValueProps } from "@/context/settings/types";
-import { SettingsContext } from './settings-context';
+import { SettingsContext } from "./settings-context";
 import React, { useMemo } from "react";
+import { ThemeProvider } from "next-themes";
 
 type SettingsProviderProps = {
-    children: React.ReactNode;
-    defaultSettings: SettingsValueProps;
+  children: React.ReactNode;
+  defaultSettings: SettingsValueProps;
 };
 
 export function SettingsProvider({ children, defaultSettings }: SettingsProviderProps) {
+  const memoizedValue = useMemo(
+    () => ({
+      ...defaultSettings,
+    }),
+    [defaultSettings]
+  );
 
-    const memoizedValue = useMemo(
-        () => ({
-s
-        }),
-        []
-    );
-
-    return <SettingsContext.Provider value={memoizedValue}>{children}</SettingsContext.Provider>;
+  return (
+    <SettingsContext.Provider value={memoizedValue}>
+      <ThemeProvider attribute="class">{children}</ThemeProvider>
+    </SettingsContext.Provider>
+  );
 }

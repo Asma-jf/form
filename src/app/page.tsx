@@ -1,5 +1,6 @@
 "use client"
 
+import { ThemeSwitcher } from "@/components/themes/ThemeSwitcher"
 import { useState, useEffect } from "react"
 
 export default function Home() {
