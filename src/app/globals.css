@@ -4,16 +4,20 @@
 
 /* استایل‌های سفارشی */
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
 }
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-    --border: 0 0% 89.8%; 
+    --bg-color: #ffffff;
+  --text-color: #000000;
   }
-
+  [data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #ffffff;
+  }
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
