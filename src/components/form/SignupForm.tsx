@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import FormTextInput from "@/app/components/form/text-inout/FormTextInput";
+import FormTextInput from "@/components/form/text-inout/FormTextInput";
 import FormProviderWrapper from "./provider/FormProvider";
 
 interface FormInputs {
