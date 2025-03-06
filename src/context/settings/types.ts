@@ -1,6 +1,10 @@
+// 📂 /context/settings/types.ts
+
 export type SettingsValueProps = {
+    theme: 'light' | 'dark' | 'system';  
+    enableSystem: boolean;
+    language: 'fa' | 'en';
     themeStretch: boolean;
-    themeMode: 'light' | 'dark';
     themeDirection: 'rtl' | 'ltr';
     themeContrast: 'default' | 'bold';
     themeLayout: 'vertical' | 'horizontal' | 'mini';
@@ -8,15 +12,12 @@ export type SettingsValueProps = {
 };
 
 export type SettingsContextProps = SettingsValueProps & {
-    // Update
-    onUpdate: (name: string, value: string | boolean) => void;
-    // Direction by lang
-    onChangeDirectionByLang: (lang: string) => void;
-    // Reset
+    onUpdate: <T extends keyof SettingsValueProps>(name: T, value: SettingsValueProps[T]) => void;
+    onChangeDirectionByLang: (lang: "fa" | "en") => void;
     canReset: boolean;
     onReset: VoidFunction;
-    // Drawer
     open: boolean;
     onToggle: VoidFunction;
     onClose: VoidFunction;
+    settings: SettingsValueProps;
 };

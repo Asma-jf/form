@@ -1,13 +1,17 @@
 // app/providers.tsx
 "use client";
 
-import {HeroUIProvider} from '@heroui/react'
-import {ThemeProvider as NextThemesProvider} from "next-themes";
+import { useSettingsContext } from '@/context/settings/settings-context';
+import { HeroUIProvider } from '@heroui/react'
+import { ThemeProvider as NextThemesProvider } from "next-themes";
 
-export function Providers({children}: { children: React.ReactNode }) {
+export function Providers({ children }: { children: React.ReactNode }) {
+  const { settings } = useSettingsContext();
   return (
     <HeroUIProvider>
-      <NextThemesProvider attribute="class" defaultTheme="dark">
+      <NextThemesProvider attribute="class"
+        defaultTheme={settings.theme}
+        enableSystem={true}>
         {children}
       </NextThemesProvider>
     </HeroUIProvider>
