@@ -1,7 +1,7 @@
 "use client";
 import { SettingsValueProps } from "@/context/settings/types";
 import { SettingsContext } from './settings-context';
-import React, { useMemo } from "react";
+import React, { useMemo, useCallback } from "react";
 import { useLocalStorage } from "@/hooks/use-local-storage";
 
 type SettingsProviderProps = {
@@ -9,21 +9,23 @@ type SettingsProviderProps = {
     defaultSettings: SettingsValueProps;
 };
 
-const onUpdate = (setSettings: React.Dispatch<React.SetStateAction<SettingsValueProps>>) => (name: string, value: string | boolean) => {
-    setSettings((prevSettings) => ({
-      ...prevSettings,
-      [name]: value, 
-    }));
-  };
-  export function SettingsProvider({ children, defaultSettings }: SettingsProviderProps) {
+export function SettingsProvider({ children, defaultSettings }: SettingsProviderProps) {
     const [settings, setSettings] = useLocalStorage<SettingsValueProps>("app-settings", defaultSettings);
+
+    const onUpdate = useCallback((name: string, value: string | boolean) => {
+        setSettings((prevSettings) => ({
+            ...prevSettings,
+            [name]: value,
+        }));
+    }, [setSettings]);  
+
     const memoizedValue = useMemo(
-      () => ({
-        settings,
-        onUpdate: onUpdate(setSettings), 
-      }),
-      [settings] 
+        () => ({
+            settings,
+            onUpdate,  
+        }),
+        [settings, onUpdate]  
     );
-  
+
     return <SettingsContext.Provider value={memoizedValue}>{children}</SettingsContext.Provider>;
-  }
+}
