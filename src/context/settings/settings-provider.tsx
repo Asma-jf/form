@@ -20,12 +20,9 @@ export function SettingsProvider({ children, defaultSettings }: SettingsProvider
     }, [setSettings]);
 
     const onChangeDirectionByLang = useCallback((newLang: "fa" | "en") => {
-        setSettings((prevSettings: SettingsValueProps) => ({
-            ...prevSettings,
-            language: newLang,
-            themeDirection: newLang === "fa" ? "rtl" : "ltr",
-        }));
-    }, [setSettings]);
+        onUpdate("language", newLang);
+        onUpdate("themeDirection", newLang === "fa" ? "rtl" : "ltr"); 
+      }, [onUpdate]);
 
     const memoizedValue = useMemo(() => ({
         settings,
