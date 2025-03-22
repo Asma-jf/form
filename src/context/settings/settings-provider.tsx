@@ -19,10 +19,11 @@ export function SettingsProvider({ children, defaultSettings }: SettingsProvider
         }));
     }, [setSettings]);
 
-    const onChangeDirectionByLang = useCallback(() => {
+    const onChangeDirectionByLang = useCallback((newLang: "fa" | "en") => {
         setSettings((prevSettings: SettingsValueProps) => ({
             ...prevSettings,
-            themeDirection: prevSettings.themeDirection === "rtl" ? "ltr" : "rtl",
+            language: newLang,
+            themeDirection: newLang === "fa" ? "rtl" : "ltr",
         }));
     }, [setSettings]);
 
