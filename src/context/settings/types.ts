@@ -12,5 +12,6 @@ export type SettingsValueProps = {
   export type SettingsContextProps = {
     settings: SettingsValueProps;
     onUpdate: <T extends keyof SettingsValueProps>(name: T, value: SettingsValueProps[T]) => void;
-    onChangeDirectionByLang: (newLang: "fa" | "en") => void;  };
+    onChangeDirectionByLang: () => void;
+  };
   

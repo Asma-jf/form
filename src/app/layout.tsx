@@ -4,7 +4,6 @@ import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { SettingsProvider } from "@/context/settings/settings-provider";
 import { SettingsValueProps } from "@/context/settings/types";
-
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -23,9 +22,9 @@ export const metadata: Metadata = {
 const defaultSettings: SettingsValueProps = {
   theme: "light",                
   enableSystem: true,
-  language: "en",               
+  language: "fa",               
   themeStretch: false,
-  themeDirection: "ltr",       
+  themeDirection: "rtl",       
   themeContrast: "default",      
   themeLayout: "vertical",        
   themeColorPresets: "default",   
@@ -37,7 +36,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="fa" dir="rtl">
       <body>
         <SettingsProvider defaultSettings={defaultSettings}>
           <ThemeProvider attribute="class" defaultTheme="light">
