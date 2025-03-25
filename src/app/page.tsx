@@ -3,7 +3,10 @@
 import { useSettingsContext } from "@/context/settings/settings-context";
 import { useEffect } from "react";
 import { ThemeSwitcher } from "@/components/themes/ThemeSwitcher";
-import { useLocales } from '@/locales/use-locales';
+import { useLocales } from "@/locales/use-locales";
+import Calendar from "@/components/Calendar";
+import { localStorageSetItem } from "@/utils/storage-available";
+
 export default function Home() {
   const { settings, onUpdate } = useSettingsContext();
   const { t, changeLanguage } = useLocales();
@@ -14,9 +17,9 @@ export default function Home() {
 
   const handleLanguageChange = (lang: "fa" | "en") => {
     changeLanguage(lang);
-
-    onUpdate('language', lang);
-    onUpdate('themeDirection', lang === 'fa' ? 'rtl' : 'ltr');
+    onUpdate("language", lang);
+    onUpdate("themeDirection", lang === "fa" ? "rtl" : "ltr");
+    localStorageSetItem("lang", lang);
   };
 
   return (
@@ -31,9 +34,11 @@ export default function Home() {
           <option value="fa">فارسی</option>
           <option value="en">English</option>
         </select>
-
-        <h1 className="text-3xl font-bold mb-4">{t('welcome')}</h1>
-        <p className="text-lg">{t('description')}</p>
+        <h1 className="text-3xl font-bold mb-4">{t("welcome")}</h1>
+        <p className="text-lg">{t("description")}</p>
+      </div>
+      <div className="block w-full">
+        <Calendar />
       </div>
     </div>
   );

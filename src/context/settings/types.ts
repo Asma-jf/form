@@ -14,4 +14,3 @@ export type SettingsValueProps = {
     onUpdate: <T extends keyof SettingsValueProps>(name: T, value: SettingsValueProps[T]) => void;
     onChangeDirectionByLang: () => void;
   };
-  

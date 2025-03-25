@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { SettingsProvider } from "@/context/settings/settings-provider";
 import { SettingsValueProps } from "@/context/settings/types";
+import I18nProvider from "../locales/i18nprovider";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -38,11 +39,15 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl">
       <body>
+        
         <SettingsProvider defaultSettings={defaultSettings}>
+        <I18nProvider >
           <ThemeProvider attribute="class" defaultTheme="light">
             {children}
           </ThemeProvider>
+          </I18nProvider>
         </SettingsProvider>
+        
       </body>
     </html>
   );
