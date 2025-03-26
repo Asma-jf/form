@@ -13,7 +13,7 @@ const defaultSettings = {
 export default function i18nprovider({ children, language }: I18nWrapperProps) {
   const [date, setDate] = React.useState(parseAbsoluteToLocal("2021-04-07T18:45:22Z"));
 
-  const locale = (language || defaultSettings.language) === "fa" ? "fa-IR" : "en-US";
+  const locale = (language) === "fa" ? "fa-IR" : "en-US";
   return (
     <div className="flex flex-col gap-4">
       <I18nProvider locale={locale}>
